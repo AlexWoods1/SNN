@@ -5,4 +5,3 @@ Purpose:    Implements Broad network based SNN Architechture for our Neural Netw
 Part of:    SNN v{version}
 """
 
-from snn import __version__
