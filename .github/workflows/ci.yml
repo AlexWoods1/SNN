@@ -3,18 +3,42 @@ name: CI
 on: [push, pull_request]
 
 jobs:
-  test:
+  quality:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
         with:
           python-version: "3.10"
+
       - name: Install dependencies
         run: pip install -e ".[dev]"
+
+      - name: Check formatting (black)
+        run: black --check src/
+
+      - name: Lint (flake8)
+        run: flake8 src/
+
+      - name: Type check (mypy)
+        run: mypy src/
+
       - name: Run tests
         run: pytest --cov=src/snn
-      - name: Lint
-        run: flake8 src/
-      - name: Format check
-        run: black --check src/
+
+  release:
+    needs: quality
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/v')
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Create GitHub Release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
