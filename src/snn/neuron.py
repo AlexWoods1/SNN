@@ -7,8 +7,6 @@ Part of:    SNN v{version}
 
 from __future__ import annotations
 
-from typing import Any
-
 
 class LIFNeuron:
     """
