@@ -51,9 +51,7 @@ class Synapse:
         self.delay: float = delay
         self.dt: float = dt
         self._delay_steps: int = int(round(delay / dt))
-        self._buffer: list[float] = [0.0] * (
-            self._delay_steps + 1
-        )  # type: ignore[arg-type]
+        self._buffer: list[float] = [0.0] * (self._delay_steps + 1)
 
     def transmit(self, spike: bool) -> float:
         """
