@@ -7,6 +7,8 @@ Part of:    SNN v{version}
 
 from __future__ import annotations
 
+from typing import Any
+
 
 class LIFNeuron:
     """
@@ -46,14 +48,14 @@ class LIFNeuron:
         v_reset: float,
         dt: float,
     ) -> None:
-        self.tau_m = tau_m
-        self.r_m = r_m
-        self.v_rest = v_rest
-        self.v_thresh = v_thresh
-        self.v_reset = v_reset
-        self.dt = dt
-        self.v = v_rest
-        self.spike_history = []
+        self.tau_m: float = tau_m
+        self.r_m: float = r_m
+        self.v_rest: float = v_rest
+        self.v_thresh: float = v_thresh
+        self.v_reset: float = v_reset
+        self.dt: float = dt
+        self.v: float = v_rest
+        self.spike_history: list[bool] = []
 
     def step(self, current: float) -> bool:
         """
