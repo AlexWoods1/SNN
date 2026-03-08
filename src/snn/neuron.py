@@ -73,8 +73,8 @@ class LIFNeuron:
         """
 
         # 1. Apply Euler step:
-        dV = (self.dt / self.tau_m) * (-(self.v - self.v_rest) + self.r_m * current)
-        self.v += dV
+        self.v += ((self.dt / self.tau_m) *
+                  (-(self.v - self.v_rest) + self.r_m * current))
         # 2. Check spike threshold:
 
         # 3. Append spike to history
