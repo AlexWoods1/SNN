@@ -5,13 +5,13 @@ This is the SNN project todo file.
 ## Backlog
 - [ ] Write tests for:
   - [ ] network.py
-  - [ ] neuron.py
+  - [x] neuron.py
   - [ ] synapse.py
   - [ ] utils.py
   - [ ] __init__.py
 - [ ] Implement functions:
   - [ ] network.py
-  - [ ] neuron.py
+  - [x] neuron.py
   - [ ] synapse.py
   - [ ] utils.py
   - [ ] __init__.py
@@ -19,14 +19,14 @@ This is the SNN project todo file.
 ## Planned
 - [ ] Outline functions
   - [ ] network.py
-  - [ ] neuron.py
+  - [x] neuron.py
   - [ ] synapse.py
   - [ ] utils.py
   - [ ] __init__.py
 
 - [ ] Add types for functions
   - [ ] network.py
-  - [ ] neuron.py
+  - [x] neuron.py
   - [ ] synapse.py
   - [ ] utils.py
   - [ ] __init__.py
@@ -34,7 +34,7 @@ This is the SNN project todo file.
 ## In Progress
 
 - [ ] Complete README.md
-- [ ] Establish Security Settings on GitHub
+- [x] Establish Security Settings on GitHub
 - [ ] Establish Collaborator settings on GitHub
 
 ## Completed Tasks
