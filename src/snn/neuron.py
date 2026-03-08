@@ -7,43 +7,44 @@ Part of:    SNN v{version}
 
 from __future__ import annotations
 
+
 class LIFNeuron:
     """
-        Leaky Integrate-and-Fire (LIF) Neuron Model.
+    Leaky Integrate-and-Fire (LIF) Neuron Model.
 
-        Models a single neuron's membrane potential dynamics and spike
-        generation. The LIF model approximates biological neuron behavior
-        by integrating input current and 'leaking' charge over time.
+    Models a single neuron's membrane potential dynamics and spike
+    generation. The LIF model approximates biological neuron behavior
+    by integrating input current and 'leaking' charge over time.
 
-        Membrane potential dynamics (continuous form):
-            τ_m · dV/dt = -(V - V_rest) + R_m · I(t)
+    Membrane potential dynamics (continuous form):
+        τ_m · dV/dt = -(V - V_rest) + R_m · I(t)
 
-        Euler-discretised for simulation (timestep dt):
-            V[t+1] = V[t] + (dt / τ_m) · (-(V[t] - V_rest) + R_m · I[t])
+    Euler-discretised for simulation (timestep dt):
+        V[t+1] = V[t] + (dt / τ_m) · (-(V[t] - V_rest) + R_m · I[t])
 
-        Spike condition:
-            if V[t] >= V_thresh:
-                emit spike
-                V[t] = V_reset
+    Spike condition:
+        if V[t] >= V_thresh:
+            emit spike
+            V[t] = V_reset
 
-        Parameters
-        ----------
-        tau_m    : float  — membrane time constant (ms), controls leak rate
-        r_m      : float  — membrane resistance (MΩ), scales input current
-        v_rest   : float  — resting membrane potential (mV)
-        v_thresh : float  — spike threshold potential (mV)
-        v_reset  : float  — post-spike reset potential (mV)
-        dt       : float  — simulation timestep (ms)
+    Parameters
+    ----------
+    tau_m    : float  — membrane time constant (ms), controls leak rate
+    r_m      : float  — membrane resistance (MΩ), scales input current
+    v_rest   : float  — resting membrane potential (mV)
+    v_thresh : float  — spike threshold potential (mV)
+    v_reset  : float  — post-spike reset potential (mV)
+    dt       : float  — simulation timestep (ms)
     """
 
     def __init__(
-            self,
-            tau_m: float,
-            r_m: float,
-            v_rest: float,
-            v_thresh: float,
-            v_reset: float,
-            dt: float,
+        self,
+        tau_m: float,
+        r_m: float,
+        v_rest: float,
+        v_thresh: float,
+        v_reset: float,
+        dt: float,
     ) -> None:
         self.tau_m = tau_m
         self.r_m = r_m
@@ -53,7 +54,6 @@ class LIFNeuron:
         self.dt = dt
         self.v = v_rest
         self.spike_history = []
-
 
     def step(self, current: float) -> bool:
         """
@@ -76,7 +76,6 @@ class LIFNeuron:
         dV = (self.dt / self.tau_m) * (-(self.v - self.v_rest) + self.r_m * current)
         self.v += dV
         # 2. Check spike threshold:
-
 
         # 3. Append spike to history
         if self.v >= self.v_thresh:
@@ -115,4 +114,4 @@ class LIFNeuron:
         """
         if not self.spike_history:
             return 0.0
-        return self.spike_count / (len(self.spike_history)* self.dt / 1000)
+        return self.spike_count / (len(self.spike_history) * self.dt / 1000)
